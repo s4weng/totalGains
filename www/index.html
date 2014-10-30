@@ -8,10 +8,6 @@
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-    <link href="css/ionic.app.css" rel="stylesheet">
-    -->
-
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
@@ -21,14 +17,30 @@
     <!-- your app's js -->
     <script src="js/app.js"></script>
   </head>
-  <body ng-app="starter">
+  <body ng-app="WLP" ng-controller="WLPCtrl">
 
-    <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Ionic Blank Starter</h1>
-      </ion-header-bar>
-      <ion-content>
-      </ion-content>
-    </ion-pane>
+   <ion-tabs class="tabs-positive">
+
+     <ion-tab title="Your Lifts">
+
+        <ul>
+          <li ng-repeat="lift in lifts">
+           <label class="item item-input item-floating-label">
+            <span class="input-label">{{lift.name}}</span>
+              <input type="number" ng-model="lifts[lift.name]" value="{{lifts[lift.name]}}" placeholder={{lift.name}}>
+            </label>
+          </li>
+        </ul>
+        <!--<button type="submit" class="button button-block button-positive">Update</button>-->
+
+     </ion-tab>
+
+     <ion-tab title="Ratios">
+     <li ng-repeat="lift in lifts">
+      {{lift.name}} = {{lifts[lift.name]}}
+     </li>
+     </ion-tab>
+
+    </ion-tabs>
   </body>
 </html>
