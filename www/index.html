@@ -8,6 +8,9 @@
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
+    <!-- canvasJS for graphs -->
+    <script src="js/canvasjs.min.js"></script>
+
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
@@ -16,13 +19,14 @@
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
+
   </head>
   <body ng-app="WLP" ng-controller="WLPCtrl">
+
 
    <ion-tabs class="tabs-positive">
 
      <ion-tab title="Your Lifts">
-
         <ul>
           <li ng-repeat="lift in lifts">
            <label class="item item-input item-floating-label">
@@ -32,15 +36,27 @@
           </li>
         </ul>
         <!--<button type="submit" class="button button-block button-positive">Update</button>-->
-
      </ion-tab>
 
-     <ion-tab title="Ratios">
-     <li ng-repeat="lift in lifts">
-      {{lift.name}} = {{lifts[lift.name]}}
-     </li>
+     <ion-tab title="Comparison Graph">
+      <button class="button button-block button-positive" ng-click="genGraph()">Generate Graph</button>
+        <p>Note - The optimal ratio is based on your squat.</p>
+     <div id="ratioGraph" style="height: 300px; width: 100%;"></div>
+     </ion-tab>
+
+     <ion-tab title="Ratio Settings">
+     <p>Note - These ratios are retrieved from weightlifting textbooks written by distinguised weightlifters/coaches.  Change at your own risk.  All lifts based off 100% of your squat.</p>
+         <ul>
+          <li ng-repeat="ratio in ratios">
+           <label class="item item-input item-floating-label">
+            <span class="input-label">{{ratio.name}}</span>
+              <input type="number" ng-model="ratios[ratio.name]" value="{{ratios[ratio.name]}}" placeholder={{ratio.name}}>
+            </label>
+          </li>
+        </ul>
      </ion-tab>
 
     </ion-tabs>
   </body>
 </html>
+
