@@ -27,6 +27,7 @@
    <ion-tabs class="tabs-positive">
 
      <ion-tab title="Your Lifts">
+     <ion-scroll zooming="true" direction="xy">
         <ul>
           <li ng-repeat="lift in lifts">
            <label class="item item-input item-floating-label">
@@ -36,6 +37,7 @@
           </li>
         </ul>
         <!--<button type="submit" class="button button-block button-positive">Update</button>-->
+     </ion-scroll>
      </ion-tab>
 
      <ion-tab title="Comparison Graph">
@@ -45,6 +47,7 @@
      </ion-tab>
 
      <ion-tab title="Ratio Settings">
+     <ion-scroll zooming="true" direction="xy">
      <p>Note - These ratios are retrieved from weightlifting textbooks written by distinguised weightlifters/coaches.  Change at your own risk.  All lifts based off 100% of your squat.</p>
          <ul>
           <li ng-repeat="ratio in ratios">
@@ -54,6 +57,7 @@
             </label>
           </li>
         </ul>
+     </ion-scroll>
      </ion-tab>
 
     </ion-tabs>

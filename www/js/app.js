@@ -13,8 +13,15 @@ WLPApp.controller('WLPCtrl', function($scope, $ionicTabsDelegate) {
   {name: 'Power Jerk'}
   ];
 
-  $scope.ratios = $scope.lifts;
-  $scope.ratios.splice(2, 1);
+$scope.ratios = [
+  {name: 'Snatch'},
+  {name: 'Clean and Jerk'},
+  {name: 'Pull'},
+  {name: 'Front Squat'},
+  {name: 'Power Snatch'},
+  {name: 'Power Clean'},
+  {name: 'Power Jerk'}
+  ];
 
   $scope.genGraph = function () {
     var chart = new CanvasJS.Chart("ratioGraph", {
@@ -40,14 +47,13 @@ WLPApp.controller('WLPCtrl', function($scope, $ionicTabsDelegate) {
        {
         name: "Optimal lifts",
         dataPoints: [
-        { label: "Snatch", y:19 },
-        { label: "Clean and Jerk", y:25},
-        { label: "Squat", y:30},
-        { label: "Pull", y:33},
-        { label: "Front Squat", y:33},
-        { label: "Power Snatch", y:33},
-        { label: "Power Clean", y:33},
-        { label: "Power Jerk", y:33}
+        { label: "Snatch", y: $scope.lifts["Squat"]*$scope.ratios["Snatch"]},
+        { label: "Clean and Jerk", $scope.lifts["Squat"]*$scope.ratios["Clean and Jerk"]},
+        { label: "Pull", y: $scope.lifts["Squat"]*$scope.ratios["Pull"]},
+        { label: "Front Squat", y: $scope.lifts["Squat"]*$scope.ratios["Front Squat"]},
+        { label: "Power Snatch", y: $scope.lifts["Squat"]*$scope.ratios["Power Snatch"]},
+        { label: "Power Clean", y: $scope.lifts["Squat"]*$scope.ratios["Power Clean"]},
+        { label: "Power Jerk", y: $scope.lifts["Squat"]*$scope.ratios["Power Jerk"]}
         ]
        }
        ]
