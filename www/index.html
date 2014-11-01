@@ -23,7 +23,6 @@
   </head>
   <body ng-app="WLP" ng-controller="WLPCtrl">
 
-
    <ion-tabs class="tabs-positive">
 
      <ion-tab title="Your Lifts">
@@ -46,22 +45,22 @@
      <div id="ratioGraph" style="height: 300px; width: 100%;"></div>
      </ion-tab>
 
-<!--
      <ion-tab title="Ratio Settings">
      <ion-scroll zooming="true" direction="xy">
-     <p>Note - These ratios are retrieved from weightlifting textbooks written by distinguised weightlifters/coaches.  Change at your own risk.  All lifts based off 100% of your squat.</p>
          <ul>
-          <li ng-repeat="ratio in ratios">
+          <li ng-repeat="lift in lifts" ng-if="lift.name!='Squat'">
            <label class="item item-input item-floating-label">
-            <span class="input-label">{{ratio.name}}</span>
-              <input type="number" ng-model="ratios[ratio.name]" value="{{ratios[ratio.name]}}" placeholder={{ratio.name}}>
+            <span class="input-label">{{lift.name}}</span>
+              <input type="number" ng-model="lift.ratio" placeholder={{lift.name}}>
             </label>
           </li>
         </ul>
+        <p>Ratios are based off your squat.</p>
      </ion-scroll>
      </ion-tab>
--->
+
     </ion-tabs>
+
   </body>
 </html>
 
