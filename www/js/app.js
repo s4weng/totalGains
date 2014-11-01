@@ -3,24 +3,14 @@ var WLPApp = angular.module('WLP', ['ionic']);
 WLPApp.controller('WLPCtrl', function($scope, $ionicTabsDelegate) {
  
   $scope.lifts = [
-  {name: 'Snatch'},
-  {name: 'Clean and Jerk'},
-  {name: 'Squat'},
-  {name: 'Pull'},
-  {name: 'Front Squat'},
-  {name: 'Power Snatch'},
-  {name: 'Power Clean'},
-  {name: 'Power Jerk'}
-  ];
-
-$scope.ratios = [
-  {name: 'Snatch'},
-  {name: 'Clean and Jerk'},
-  {name: 'Pull'},
-  {name: 'Front Squat'},
-  {name: 'Power Snatch'},
-  {name: 'Power Clean'},
-  {name: 'Power Jerk'}
+  {name: 'Snatch', ratio: 0.62, val: 0},
+  {name: 'Clean and Jerk', ratio: 0.77, val: 0},
+  {name: 'Squat', ratio: 1.0, val: 0},
+  {name: 'Pull', ratio: 1.04, val: 0},
+  {name: 'Front Squat', ratio: 0.86, val:0},
+  {name: 'Power Snatch', ratio: 0.51, val:0},
+  {name: 'Power Clean', ratio: 0.63, val:0},
+  {name: 'Power Jerk', ratio: 0.73, val:0}
   ];
 
   $scope.genGraph = function () {
@@ -34,26 +24,27 @@ $scope.ratios = [
           type: "column",
          name: "User's lifts",
          dataPoints: [
-        { label: "Snatch", y: $scope.lifts["Snatch"]},
-        { label: "Clean and Jerk", y: $scope.lifts["Clean and Jerk"]},
-        { label: "Squat", y: $scope.lifts["Squat"]},
-        { label: "Pull", y: $scope.lifts["Pull"]},
-        { label: "Front Squat",  y: $scope.lifts["Front Squat"]},
-        { label: "Power Snatch", y: $scope.lifts["Power Snatch"]},
-        { label: "Power Clean", y: $scope.lifts["Power Clean"]},
-        { label: "Power Jerk", y: $scope.lifts["Power Jerk"]}
+        { label: "Snatch", y: $scope.lifts[0].val},
+        { label: "Clean and Jerk", y: $scope.lifts[1].val},
+        { label: "Squat", y: $scope.lifts[2].val},
+        { label: "Pull", y: $scope.lifts[3].val},
+        { label: "Front Squat",  y: $scope.lifts[4].val},
+        { label: "Power Snatch", y: $scope.lifts[5].val},
+        { label: "Power Clean", y: $scope.lifts[6].val},
+        { label: "Power Jerk", y: $scope.lifts[7].val}
         ]
        },
        {
         name: "Optimal lifts",
         dataPoints: [
-        { label: "Snatch", y: $scope.lifts["Squat"]*$scope.ratios["Snatch"]},
-        { label: "Clean and Jerk", $scope.lifts["Squat"]*$scope.ratios["Clean and Jerk"]},
-        { label: "Pull", y: $scope.lifts["Squat"]*$scope.ratios["Pull"]},
-        { label: "Front Squat", y: $scope.lifts["Squat"]*$scope.ratios["Front Squat"]},
-        { label: "Power Snatch", y: $scope.lifts["Squat"]*$scope.ratios["Power Snatch"]},
-        { label: "Power Clean", y: $scope.lifts["Squat"]*$scope.ratios["Power Clean"]},
-        { label: "Power Jerk", y: $scope.lifts["Squat"]*$scope.ratios["Power Jerk"]}
+        { label: "Snatch", y: $scope.lifts[0].ratio*$scope.lifts[2].val},
+        { label: "Clean and Jerk", y: $scope.lifts[1].ratio*$scope.lifts[2].val},
+        { label: "Squat", y: $scope.lifts[2].ratio*$scope.lifts[2].val},
+        { label: "Pull", y: $scope.lifts[3].ratio*$scope.lifts[2].val},
+        { label: "Front Squat",  y: $scope.lifts[4].ratio*$scope.lifts[2].val},
+        { label: "Power Snatch", y: $scope.lifts[5].ratio*$scope.lifts[2].val},
+        { label: "Power Clean", y: $scope.lifts[6].ratio*$scope.lifts[2].val},
+        { label: "Power Jerk", y: $scope.lifts[7].ratio*$scope.lifts[2].val}
         ]
        }
        ]

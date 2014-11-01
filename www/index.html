@@ -32,7 +32,7 @@
           <li ng-repeat="lift in lifts">
            <label class="item item-input item-floating-label">
             <span class="input-label">{{lift.name}}</span>
-              <input type="number" ng-model="lifts[lift.name]" value="{{lifts[lift.name]}}" placeholder={{lift.name}}>
+              <input type="number" ng-model="lift.val" placeholder={{lift.name}}>
             </label>
           </li>
         </ul>
@@ -46,6 +46,7 @@
      <div id="ratioGraph" style="height: 300px; width: 100%;"></div>
      </ion-tab>
 
+<!--
      <ion-tab title="Ratio Settings">
      <ion-scroll zooming="true" direction="xy">
      <p>Note - These ratios are retrieved from weightlifting textbooks written by distinguised weightlifters/coaches.  Change at your own risk.  All lifts based off 100% of your squat.</p>
@@ -59,7 +60,7 @@
         </ul>
      </ion-scroll>
      </ion-tab>
-
+-->
     </ion-tabs>
   </body>
 </html>
