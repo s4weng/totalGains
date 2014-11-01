@@ -3,14 +3,14 @@ var WLPApp = angular.module('WLP', ['ionic']);
 WLPApp.controller('WLPCtrl', function($scope, $ionicTabsDelegate) {
  
   $scope.lifts = [
-  {name: 'Snatch', ratio: 0.62, val: 0},
-  {name: 'Clean and Jerk', ratio: 0.77, val: 0},
-  {name: 'Squat', ratio: 1.0, val: 0},
-  {name: 'Pull', ratio: 1.04, val: 0},
-  {name: 'Front Squat', ratio: 0.86, val:0},
-  {name: 'Power Snatch', ratio: 0.51, val:0},
-  {name: 'Power Clean', ratio: 0.63, val:0},
-  {name: 'Power Jerk', ratio: 0.73, val:0}
+  {name: 'Snatch', ratio: 0.62, val: 10},
+  {name: 'Clean and Jerk', ratio: 0.77, val: 10},
+  {name: 'Squat', ratio: 1.0, val: 10},
+  {name: 'Pull', ratio: 1.04, val: 10},
+  {name: 'Front Squat', ratio: 0.86, val: 10},
+  {name: 'Power Snatch', ratio: 0.51, val: 10},
+  {name: 'Power Clean', ratio: 0.63, val: 10},
+  {name: 'Power Jerk', ratio: 0.73, val: 10}
   ];
 
   $scope.genGraph = function () {
@@ -19,41 +19,37 @@ WLPApp.controller('WLPCtrl', function($scope, $ionicTabsDelegate) {
       title:{
         text: "Your Lifts Vs. Optimal Ratio"              
       },
-      data: [             
-        {
-          type: "column",
-         name: "User's lifts",
-         dataPoints: [
-        { label: "Snatch", y: $scope.lifts[0].val},
-        { label: "Clean and Jerk", y: $scope.lifts[1].val},
-        { label: "Squat", y: $scope.lifts[2].val},
-        { label: "Pull", y: $scope.lifts[3].val},
-        { label: "Front Squat",  y: $scope.lifts[4].val},
-        { label: "Power Snatch", y: $scope.lifts[5].val},
-        { label: "Power Clean", y: $scope.lifts[6].val},
-        { label: "Power Jerk", y: $scope.lifts[7].val}
-        ]
-       },
-       {
-        name: "Optimal lifts",
-        dataPoints: [
-        { label: "Snatch", y: $scope.lifts[0].ratio*$scope.lifts[2].val},
-        { label: "Clean and Jerk", y: $scope.lifts[1].ratio*$scope.lifts[2].val},
-        { label: "Squat", y: $scope.lifts[2].ratio*$scope.lifts[2].val},
-        { label: "Pull", y: $scope.lifts[3].ratio*$scope.lifts[2].val},
-        { label: "Front Squat",  y: $scope.lifts[4].ratio*$scope.lifts[2].val},
-        { label: "Power Snatch", y: $scope.lifts[5].ratio*$scope.lifts[2].val},
-        { label: "Power Clean", y: $scope.lifts[6].ratio*$scope.lifts[2].val},
-        { label: "Power Jerk", y: $scope.lifts[7].ratio*$scope.lifts[2].val}
-        ]
-       }
-       ]
-     });
+      data: data, //generate data below
+    });
 
-    chart.render(); 
+    chart.render();
 }
-  
 
+    //data for the creation of the graph
+    var data=[]; var dataSeries = { type: "column" };
+    var dataPoints=[];
+    for (var i = 0; i < $scope.lifts.length; i++) {
+      if (i == 2) continue;
+      dataPoints.push({
+        label: $scope.lifts[i].name,
+        y: $scope.lifts[i].val
+    });
+    }
+    dataSeries.dataPoints = dataPoints;
+    data.push(dataSeries);
+
+    dataPoints=[];
+    dataSeries = { type: "column" };
+    for (var i = 0; i < $scope.lifts.length; i++) {
+      if (i == 2) continue;
+      dataPoints.push({
+        label: $scope.lifts[i].name,
+        y: $scope.lifts[i].ratio*$scope.lifts[2].val
+    });
+    }
+    dataSeries.dataPoints = dataPoints;
+    data.push(dataSeries);
+  
 });
  
  
