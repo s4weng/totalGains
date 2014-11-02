@@ -3,28 +3,17 @@ var WLPApp = angular.module('WLP', ['ionic']);
 WLPApp.controller('WLPCtrl', function($scope, $ionicTabsDelegate) {
  
   $scope.lifts = [
-  {name: 'Snatch', ratio: 0.62, val: 10},
-  {name: 'Clean and Jerk', ratio: 0.77, val: 10},
-  {name: 'Squat', ratio: 1.0, val: 10},
-  {name: 'Pull', ratio: 1.04, val: 10},
-  {name: 'Front Squat', ratio: 0.86, val: 10},
-  {name: 'Power Snatch', ratio: 0.51, val: 10},
-  {name: 'Power Clean', ratio: 0.63, val: 10},
-  {name: 'Power Jerk', ratio: 0.73, val: 10}
+  {name: 'Snatch', ratio: 0.62, val: undefined},
+  {name: 'Clean and Jerk', ratio: 0.77, val: undefined},
+  {name: 'Squat', ratio: 1.0, val: undefined},
+  {name: 'Pull', ratio: 1.04, val: undefined},
+  {name: 'Front Squat', ratio: 0.86, val: undefined},
+  {name: 'Power Snatch', ratio: 0.51, val: undefined},
+  {name: 'Power Clean', ratio: 0.63, val: undefined},
+  {name: 'Power Jerk', ratio: 0.73, val: undefined}
   ];
 
   $scope.genGraph = function () {
-    var chart = new CanvasJS.Chart("ratioGraph", {
-
-      title:{
-        text: "Your Lifts Vs. Optimal Ratio"              
-      },
-      data: data, //generate data below
-    });
-
-    chart.render();
-}
-
     //data for the creation of the graph
     var data=[]; var dataSeries = { type: "column" };
     var dataPoints=[];
@@ -49,7 +38,19 @@ WLPApp.controller('WLPCtrl', function($scope, $ionicTabsDelegate) {
     }
     dataSeries.dataPoints = dataPoints;
     data.push(dataSeries);
-  
+    var chart = new CanvasJS.Chart("ratioGraph", {
+
+      title:{
+        text: "Your Lifts Vs. Optimal Ratio"              
+      },
+      data: data, //generate data below
+    });
+
+    chart.render();
+}
+
+
+
 });
  
  

@@ -23,8 +23,11 @@
   </head>
   <body ng-app="WLP" ng-controller="WLPCtrl">
 
+
+    <!-- The "Settings" Option -->
    <ion-tabs class="tabs-positive">
 
+    <!-- Lift for users to input their lifts -->
      <ion-tab title="Your Lifts">
      <ion-scroll zooming="true" direction="xy">
         <ul>
@@ -39,12 +42,14 @@
      </ion-scroll>
      </ion-tab>
 
+     <!-- Tab for the generation of graph comparing user's lifts and expected lifts -->
      <ion-tab title="Comparison Graph">
       <button class="button button-block button-positive" ng-click="genGraph()">Generate Graph</button>
         <p>Note - The optimal ratio is based on your squat.</p>
      <div id="ratioGraph" style="height: 300px; width: 100%;"></div>
      </ion-tab>
 
+     <!-- Tab where users can adjust the ratio for expected lifts -->
      <ion-tab title="Ratio Settings">
      <ion-scroll zooming="true" direction="xy">
          <ul>
