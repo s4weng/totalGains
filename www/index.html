@@ -21,16 +21,79 @@
     <script src="js/app.js"></script>
 
   </head>
-  <body ng-app="WLP" ng-controller="WLPCtrl">
+<body ng-app="TG" ng-controller="TGCtrl">
 
+    <ion-nav-bar class="bar-positive"></ion-nav-bar>
+             
+    <ion-nav-view></ion-nav-view>
 
-    <!-- The "Settings" Option -->
-   <ion-tabs class="tabs-positive">
+    <script id="index.html" type="text/ng-template">
+      <ion-tabs>
+        <ion-tab title="Home" href="#/index/home">
+          <ion-nav-view name="home-tab"></ion-nav-view>
+        </ion-tab>
+        <ion-tab title="Compare" href="#/index/compare">
+          <ion-nav-view name="compare-tab"></ion-nav-view>
+        </ion-tab>
+        <ion-tab title="Prilepin's Chart" href="#/index/prilepin">
+          <ion-nav-view name="prilepin-tab"></ion-nav-view>
+        </ion-tab>
+        <!-- hidden tabs -->
+        <ion-tab class="ng-hide" title="Ratio Settings" href="#/index/ratio">
+          <ion-nav-view name="ratio-tab"></ion-nav-view>
+        </ion-tab>
+        <ion-tab class="ng-hide" title="You" href="#/index/you">
+          <ion-nav-view name="you-tab"></ion-nav-view>
+        </ion-tab>
+        <ion-tab class="ng-hide" title="YourLifts" href="#/index/yourlifts">
+          <ion-nav-view name="yourlifts-tab"></ion-nav-view>
+        </ion-tab>
+      </ion-tabs>
+    </script>
 
-    <!-- Lift for users to input their lifts -->
-     <ion-tab title="Your Lifts">
-     <ion-scroll zooming="true" direction="xy">
-        <ul>
+<script type="text/ng-template" id="home.html">
+  <ion-view title="Home">
+    <ion-content padding="true">
+      <p>Your current snatch is: {{lifts[0].val}}</p>
+      <p>Your current clean and jerk is: {{lifts[1].val}}</p>
+      <p>For a total of: {{total}}</p>
+      <a class="button icon icon-right ion-chevron-right" href="#/index/you">Your Info</a>
+    </ion-content>
+  </ion-view>
+</script>
+    
+ <script type="text/ng-template" id="you.html">
+  <ion-view title="Your Info">
+    <ion-content padding="true">
+      <a class="ion-nav-button icon icon-right ion-chevron-left" href="#/index/home"></a>
+      <label class="item item-input item-select">
+       <div class="input-label">
+        Gender
+       </div>
+        <select>
+         <option selected>Male</option>
+         <option>Female</option>
+        </select>
+      </label>
+      <label class="item item-input item-floating-label">
+            <span class="input-label">Age</span>
+              <input type="number" placeholder=Age>
+            </label>
+      <li class="item item-checkbox">
+      <label class="checkbox">
+       <input type="checkbox">
+      </label>Kilos
+      </li>
+      <a class="button icon icon-right ion-chevron-right" href="#/index/yourlifts">Your Lifts</a>
+    </ion-content>
+  </ion-view>
+</script>
+    
+ <script type="text/ng-template" id="yourlifts.html">
+  <ion-view title="Your Lifts">
+    <ion-content padding="true">
+     <a class="ion-nav-button icon icon-right ion-chevron-left" href="#/index/you"></a>
+      <ul>
           <li ng-repeat="lift in lifts">
            <label class="item item-input item-floating-label">
             <span class="input-label">{{lift.name}}</span>
@@ -38,20 +101,33 @@
             </label>
           </li>
         </ul>
-        <!--<button type="submit" class="button button-block button-positive">Update</button>-->
-     </ion-scroll>
-     </ion-tab>
+         <button class="button button-block button-positive" ng-click="update()">Update</button>    </ion-content>
+  </ion-view>
+</script>
 
-     <!-- Tab for the generation of graph comparing user's lifts and expected lifts -->
-     <ion-tab title="Comparison Graph">
-      <button class="button button-block button-positive" ng-click="genGraph()">Generate Graph</button>
+<script type="text/ng-template" id="compare.html">
+  <ion-view title="Compare">
+    <ion-content padding="true">
+       <h2>Compare your lifts</h2>
+      <button class="button button-block button-positive" ng-click="update()">Generate Graph</button>
         <p>Note - The optimal ratio is based on your squat.</p>
-     <div id="ratioGraph" style="height: 300px; width: 100%;"></div>
-     </ion-tab>
-
-     <!-- Tab where users can adjust the ratio for expected lifts -->
-     <ion-tab title="Ratio Settings">
-     <ion-scroll zooming="true" direction="xy">
+     <div id="ratioGraph" style="height: 300px; width: 100%;"></div>         <a class="button icon icon-right ion-chevron-right" href="#/index/ratio">Comparison Ratios</a>
+    </ion-content>
+  </ion-view>
+</script>
+    
+ <script type="text/ng-template" id="prilepin.html">
+  <ion-view title="Prilepin's Chart">
+    <ion-content padding="true">
+       <h2>Prilepin's Chart</h2>
+    </ion-content>
+  </ion-view>
+</script>
+    
+ <script type="text/ng-template" id="ratio.html">
+  <ion-view button="true" title="Ratio Settings">
+    <ion-content padding="true">
+             <a class="ion-nav-button icon icon-right ion-chevron-left" href="#/index/compare"></a>
          <ul>
           <li ng-repeat="lift in lifts" ng-if="lift.name!='Squat'">
            <label class="item item-input item-floating-label">
@@ -61,11 +137,10 @@
           </li>
         </ul>
         <p>Ratios are based off your squat.</p>
-     </ion-scroll>
-     </ion-tab>
-
-    </ion-tabs>
-
+    </ion-content>
+  </ion-view>
+</script>
+ 
   </body>
 </html>
 

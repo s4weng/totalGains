@@ -1,6 +1,6 @@
-var WLPApp = angular.module('WLP', ['ionic']);
+var TGApp = angular.module('TG', ['ionic']);
  
-WLPApp.controller('WLPCtrl', function($scope, $ionicTabsDelegate) {
+TGApp.controller('TGCtrl', function($scope, $ionicTabsDelegate) {
  
   $scope.lifts = [
   {name: 'Snatch', ratio: 0.62, val: undefined},
@@ -12,8 +12,12 @@ WLPApp.controller('WLPCtrl', function($scope, $ionicTabsDelegate) {
   {name: 'Power Clean', ratio: 0.63, val: undefined},
   {name: 'Power Jerk', ratio: 0.73, val: undefined}
   ];
+  
 
-  $scope.genGraph = function () {
+  $scope.update = function () {
+    //Update total
+    $scope.total = $scope.lifts[0].val+$scope.lifts[1].val;
+
     //data for the creation of the graph
     var data=[]; var dataSeries = { type: "column" };
     var dataPoints=[];
@@ -53,9 +57,71 @@ WLPApp.controller('WLPCtrl', function($scope, $ionicTabsDelegate) {
 
 });
  
- 
 
-WLPApp.run(function($ionicPlatform) {
+
+TGApp.config(function($stateProvider, $urlRouterProvider){
+
+$stateProvider
+  .state('index', {
+     url: '/index',
+     abstract:true,
+     templateUrl: 'index.html'
+  })
+  .state('index.home', {
+     url: '/home',
+     views:{
+      'home-tab': {
+        templateUrl: 'home.html'
+      }
+     }
+  })
+  .state('index.you', {
+     url: '/you',
+     views:{
+      'you-tab': {
+        templateUrl: 'you.html'
+      }
+     }
+  })
+  .state('index.yourlifts', {
+     url: '/yourlifts',
+     views:{
+      'yourlifts-tab': {
+        templateUrl: 'yourlifts.html'
+      }
+     }
+  })
+  .state('index.compare', {
+     url: '/compare',
+     views:{
+      'compare-tab': {
+        templateUrl: 'compare.html'
+      }
+     }
+  })
+.state('index.ratio', {
+     url: '/ratio',
+     views:{
+      'ratio-tab': {
+        templateUrl: 'ratio.html'
+      }
+     }
+  })
+.state('index.prilepin', {
+     url: '/prilepin',
+     views:{
+      'prilepin-tab': {
+        templateUrl: 'prilepin.html'
+      }
+     }
+  });
+
+   $urlRouterProvider.otherwise("/index/home");
+
+});
+
+
+TGApp.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
